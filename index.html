@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Icon Finder | Comerto</title>
+		<link rel="stylesheet" type="text/css" href="style.css?v=0.0.1">
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"> </script>
+		<script src="script.js?v=0.0.1"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>Icon Finder</h1>
+			<p class="settings-desc">Číslo značí, kolik stránek se bude na každém webu procházet.<br>Některé stránky jich totiž mají někdy až stovky, je třeba to omezovat.</p>
+      <div class="input-wrap">
+				<input type="number" name="page-umber" value="3" id="search-number" class="search-number">
+        <input placeholder="Co hledáte?" class="icon-name" name="icon-name" id="search">
+				<span id="result-btn">Hledat</span>
+      </div>
+			<h2 class="settings-head">Kde hledat</h2>
+			<p class="settings-desc">
+				Výsledky se načítají přes CORS Proxy a maximální limit na dotaz jsou 2MB, proto volte ideální poměr mezi počtem zdrojových webů a počtem procházených stránek.
+			</p>
+			<span id="settings"></span>
+
+			<div class="result-wrap">
+				<div id="control-tabs"></div>
+        <div id="icons-wrap"></div>
+			</div>
+		</div>
+	</body>
+</html>

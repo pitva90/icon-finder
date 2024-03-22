@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 18px;
+	background-color: #f0f0f0;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 0;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 1200px;
+	padding: 30px;
+	padding-bottom: 70px;
+	background-color: #fff;
+	position: relative;
+	column-gap: 50px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.input-wrap {
+	display: flex;
+	justify-content: center;
+}
+
+.input-wrap input {
+	width: 100%;
+	max-width: 400px;
+	height: 50px;
+	padding: 5px 20px;
+	border-radius: 35px;
+	border: 1px solid #aaa;
+	border-right: none;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.input-wrap input#search-number {
+	background-color: #000;
+	color: #fff;
+	font-weight: 700;
+	font-size: 22px;
+	width: 80px;
+	-moz-appearance: textfield;
+	-webkit-appearance: textfield;
+  margin: 0;
+	margin-right: -30px;
+	padding-right: 30px;
+}
+
+.input-wrap input:focus {
+	outline: none;
+	border-color: #33a867;
+}
+
+#result-btn {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	font-weight: 700;
+	color: #fff;
+	background-color: #33a867;
+	padding: 5px 20px;
+	border-top-right-radius: 35px;
+	border-bottom-right-radius: 35px;
+	cursor: pointer;
+}
+
+.icon-wrap {
+  flex: 0 0 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+	padding: 15px;
+}
+
+.icon-wrap img {
+  width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 50px;
+}
+
+#control-tabs {
+	border-bottom: 1px solid #c0c0c0;
+	display: flex;
+	gap: 2px;
+	margin-top: 40px;
+	align-items: flex-end;
+}
+
+#control-tabs .tab {
+	padding: 10px;
+	flex: 0 0 auto;
+	font-weight: 500;
+	cursor: pointer;
+	border: 1px solid #c0c0c0;
+	border-bottom: none;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	transition: ease-in-out .3s;
+}
+
+#control-tabs .tab.active {
+	color: #fff;
+	background-color: #33a867;
+	padding-top: 18px;
+	border-color: #33a867;
+}
+
+#control-tabs .tab:hover {
+	border-color: #33a867;
+	padding-top: 18px;
+}
+
+.icons-inner-wrap {
+	display: none;
+}
+
+.icons-inner-wrap.active {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#settings {
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+	gap: 25px;
+}
+
+h2.settings-head {
+	font-size: 18px;
+	text-align: center;
+}
+
+p.settings-desc {
+	margin: 5px auto;
+	text-align: center;
+	max-width: 800px;
+	font-size: 14px;
+}
+
+h1 + p.settings-desc {
+	margin: 10px auto;
+}
