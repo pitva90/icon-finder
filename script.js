@@ -112,10 +112,86 @@ let site3 = {
   }
 }
 
+/*let site4 = {
+  name: 'iconsdb',
+  urlStart: 'https://www.iconsdb.com/black-icons/black-',
+  urlEnd: '-icons.html',
+  noProxy: true,
+  slugCreator: function(string){
+    return string.replace(' ', '-');
+  },
+  getIcons: function(searchUrl, target){
+    return $.ajax({
+      url: searchUrl,
+      crossDomain: true,
+      success: function (data) {
+        if ($(data).find('a[rel="next"]').length > 0) {
+          nextPageUrl = 'https://www.iconsdb.com' + $(data).find('a[rel="next"]').attr('href');
+        } else {
+          nextPageUrl = '';
+        }
+        let html = $(data).find('.pagewrap');
+        html.find('.icon-info').each(function() {
+          let iconLink = $(this).find('a').attr('href');
+          let iconImg = $(this).find('img').attr('src');
+
+          $('#tab-'+target).append('<a class="icon-wrap" href="https://www.iconsdb.com'+iconLink+'" target="_blank" rel="nofollow"><img width="80" src="https://www.iconsdb.com'+iconImg+'"></a>');
+        });
+
+        return nextPageUrl;
+      },
+      error: function (e) {
+        console.log(e);
+      },
+      timeout: 10000,
+    });
+  }
+}*/
+
+let site5 = {
+  name: 'reshot',
+  urlStart: 'https://www.reshot.com/free-svg-icons/',
+  urlEnd: '/',
+  slugCreator: function(string){
+    return string.replace(' ', '-');
+  },
+  getIcons: function(searchUrl, target){
+    return $.ajax({
+      url: searchUrl,
+      crossDomain: true,
+      success: function(data) {
+        if ($(data).find('a.pagination__link--next').length > 0) {
+          nextPageUrl = 'https://www.reshot.com' + $(data).find('a.pagination__link--next').attr('href');
+        } else {
+          nextPageUrl = '';
+        }
+
+        let html = $(data).find('.item-grid-square');
+        html.find('.icons-card').each(function() {
+          console.log('in icons-card');
+          let iconLink = $(this).find('a.icons-card__link').attr('href');
+          let iconImg = $(this).find('.icons-card__image').attr('style');
+          iconImg = iconImg.replace('--image: url(', '');
+          iconImg = iconImg.replace(')', '');
+          $('#tab-'+target).append('<a class="icon-wrap" href="https://www.reshot.com'+iconLink+'" target="_blank" rel="nofollow"><img width="80" src="'+iconImg+'"></a>');
+        });
+
+        return nextPageUrl;
+      },
+      error: function (e) {
+        console.log(e);
+      },
+      timeout: 10000,
+    });
+  }
+}
+
 let sitesObject = {
   uxwing: site1,
   veryicon: site2,
-  svgrepo: site3
+  svgrepo: site3,
+  //iconsdb: site4
+  reshot: site5
 };
 
 $(document).ready(function() {
@@ -170,31 +246,23 @@ function startSearching() {
 function processItem(array, number, string){
   if(!array[number]) return;
   let addClass = '';
+
   if(number==0) {
     addClass = 'active';
   } else {
     addClass = '';
   }
+
+  if (array[number].noProxy) {
+    corsProxy = '';
+  }
+
   $('#control-tabs').append('<div class="tab '+addClass+'" data-id="'+array[number].name+'">'+array[number].name+'</div>');
   $('#icons-wrap').append('<div id="tab-'+array[number].name+'" class="icons-inner-wrap '+addClass+'"></div>');
 
   nextPageUrl = '';
   let slug = array[number].slugCreator(string);
   let searchUrl = corsProxy + array[number].urlStart + slug + array[number].urlEnd;
-
-  //myAjax(array[number], searchUrl);
-
-  /*$.when(myAjax(array[number], searchUrl, array[number].name)).done(function(){
-    console.log(nextPageUrl);
-
-    if(nextPageUrl) {
-      let newNextPageUrl = corsProxy + nextPageUrl;
-      myAjax(array[number], newNextPageUrl, array[number].name);
-    } else {
-      number++;
-      processItem(array, number, string);
-    }
-  });*/
 
   ajaxDone(array, number, string, array[number], searchUrl, array[number].name);
 }
